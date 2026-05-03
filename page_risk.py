@@ -1,9 +1,13 @@
 # page_risk.py — Risk Comparator
+# Author: Maryam Zahid (24F-0658)
 # Module Contract: render(data_dict: dict)
 # data_dict keys: 'AAPL', 'TSLA', 'JNJ'
 # DataFrame cols: Date, Open, High, Low, Close, Volume,
 #                 Daily Return (%), Volatility (Rolling Std)
 #
+# NOTE: data_loader.py stores 'Daily Return (%)' already in % units
+#       e.g.  1.5 means +1.5%,  -2.0 means -2.0%
+#       All ratio calculations below work in % space; final display is also %.
 
 import streamlit as st
 import pandas as pd

@@ -89,7 +89,7 @@ def render(data_dict: dict):
         return 'color: #8b949e'
 
     st.dataframe(
-        pairs_df.style.applymap(color_corr, subset=["Correlation (r)"]),
+        pairs_df.style.map(color_corr, subset=["Correlation (r)"]),
         use_container_width=True,
         hide_index=True
     )

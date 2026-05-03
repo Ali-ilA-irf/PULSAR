@@ -51,8 +51,9 @@ def render(data_dict: dict):
     }
 
     for date_str, label in events.items():
+        ts = pd.to_datetime(date_str).timestamp() * 1000
         fig.add_vline(
-            x=date_str,
+            x=ts,
             line_dash='dash',
             line_color='#8b949e',
             line_width=1.2,
@@ -120,8 +121,9 @@ def render(data_dict: dict):
     )
 
     for date_str, label in events.items():
+        ts = pd.to_datetime(date_str).timestamp() * 1000
         fig2.add_vline(
-            x=date_str,
+            x=ts,
             line_dash='dash',
             line_color='#8b949e',
             line_width=1,

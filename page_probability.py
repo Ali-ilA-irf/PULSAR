@@ -1,4 +1,5 @@
 # page_probability.py — Probability Distribution
+# Author: Maryam Zahid (24F-0658)
 # Module Contract: render(data_dict: dict)
 # data_dict keys: 'AAPL', 'TSLA', 'JNJ'
 # DataFrame cols: Date, Open, High, Low, Close, Volume,

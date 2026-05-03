@@ -3,7 +3,6 @@ import plotly.graph_objects as go
 import pandas as pd
 
 from data_loader import fetch_stock_data
-data_dict = fetch_stock_data()
 
 def render(data_dict: dict):
     # 1. Ticker selectbox and date range filter (two columns)
@@ -12,8 +11,13 @@ def render(data_dict: dict):
         ticker = st.selectbox("Select Ticker", options=list(data_dict.keys()))
     
     df = data_dict[ticker].copy()
-    df['Date'] = pd.to_datetime(df['Date'])
+    df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+    df = df.dropna(subset=['Date'])
     
+    if df.empty:
+        st.warning(f"No valid date data available for {ticker}.")
+        return
+        
     min_date = df['Date'].min().date()
     max_date = df['Date'].max().date()
     

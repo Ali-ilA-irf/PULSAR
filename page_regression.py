@@ -5,7 +5,6 @@ import numpy as np
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 
 from data_loader import fetch_stock_data
-data_dict = fetch_stock_data()
 
 def render(data_dict: dict):
     # 1. Ticker selectbox
