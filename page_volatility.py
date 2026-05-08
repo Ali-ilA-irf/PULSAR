@@ -80,12 +80,12 @@ def render(data_dict: dict):
         plot_bgcolor='rgba(13,17,23,0.6)'
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # ── Volatility Summary Table ───────────────────────────────────────────
     st.subheader("Volatility Summary")
     summary_df = pd.DataFrame(summary_rows)
-    st.dataframe(summary_df, use_container_width=True, hide_index=True)
+    st.dataframe(summary_df, width="stretch", hide_index=True)
 
     # ── Extra: individual ticker deep-dive ────────────────────────────────
     st.markdown("---")
@@ -141,7 +141,7 @@ def render(data_dict: dict):
         plot_bgcolor='rgba(13,17,23,0.6)'
     )
 
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
     # Quick stats for the selected ticker
     c1, c2, c3 = st.columns(3)

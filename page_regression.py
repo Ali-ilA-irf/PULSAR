@@ -114,7 +114,7 @@ def render(data_dict: dict):
     )
     
     fig.update_layout(template='plotly_dark', xaxis_title="Date", yaxis_title="Price")
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
     
     # 8. Download button for forecast CSV (Date, Forecast columns)
     csv_forecast = forecast_df.to_csv(index=False).encode('utf-8')

@@ -4,10 +4,16 @@
 
 import streamlit as st
 
+import re
+def clean_html(html_str):
+    return re.sub(r'\n\s*', ' ', html_str)
+
+
+
 
 def apply_theme():
     st.markdown(
-        """
+        clean_html("""
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
@@ -299,14 +305,14 @@ def apply_theme():
             50%       { box-shadow: 0 0 35px rgba(56,189,248,0.18); }
         }
         </style>
-        """,
+        """),
         unsafe_allow_html=True,
     )
 
 
 def render_sidebar_logo():
     st.markdown(
-        """
+        clean_html("""
         <div style="
             padding: 28px 16px 16px;
             border-bottom: 1px solid #1e2d3d;
@@ -374,14 +380,14 @@ def render_sidebar_logo():
                 ">JNJ</span>
             </div>
         </div>
-        """,
+        """),
         unsafe_allow_html=True,
     )
 
 
 def render_hero():
     st.markdown(
-        """
+        clean_html("""
         <div style="
             position: relative;
             text-align: center;
@@ -515,6 +521,6 @@ def render_hero():
                 ">JNJ</div>
             </div>
         </div>
-        """,
+        """),
         unsafe_allow_html=True,
     )

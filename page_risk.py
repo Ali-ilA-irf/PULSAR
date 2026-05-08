@@ -126,7 +126,7 @@ def render(data_dict: dict):
             }
         )
     )
-    st.dataframe(styled, use_container_width=True, hide_index=True)
+    st.dataframe(styled, width="stretch", hide_index=True)
 
     # ──────────────────────────────────────────────
     # Section 2 — Annualized Volatility Bar Chart
@@ -143,7 +143,7 @@ def render(data_dict: dict):
     )
     fig1.update_traces(textposition="outside")
     fig1.update_layout(showlegend=False, yaxis_title="Annualized Volatility (%)")
-    st.plotly_chart(fig1, use_container_width=True)
+    st.plotly_chart(fig1, width="stretch")
 
     # ──────────────────────────────────────────────
     # Section 3 — Risk vs Return Scatter
@@ -160,7 +160,7 @@ def render(data_dict: dict):
     )
     fig2.update_traces(textposition="top center", marker=dict(size=16))
     fig2.update_layout(showlegend=False)
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
     # ──────────────────────────────────────────────
     # Section 4 — Sharpe & Sortino Ratio Grouped Bar
@@ -199,7 +199,7 @@ def render(data_dict: dict):
         title="Risk-Adjusted Return Ratios",
         yaxis_title="Ratio",
     )
-    st.plotly_chart(ratio_fig, use_container_width=True)
+    st.plotly_chart(ratio_fig, width="stretch")
 
     # ──────────────────────────────────────────────
     # Section 5 — Value-at-Risk Table
@@ -229,7 +229,7 @@ def render(data_dict: dict):
             "Max Drawdown (%)": "{:.4f}",
         }
     )
-    st.dataframe(var_styled, use_container_width=True, hide_index=True)
+    st.dataframe(var_styled, width="stretch", hide_index=True)
 
     # Interpretation text
     riskiest = comp_df.loc[comp_df["Annualized Volatility (%)"].idxmax(), "Ticker"]

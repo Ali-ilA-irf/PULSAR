@@ -11,6 +11,12 @@ import numpy as np
 import plotly.graph_objects as go
 import page_gui
 
+import re
+def clean_html(html_str):
+    return re.sub(r'\n\s*', ' ', html_str)
+
+
+
 
 # ─────────────────────────────────────────────────────────────
 #  CONSTANTS
@@ -188,11 +194,11 @@ def render(data_dict: dict):
                 color.get('line', '#38bdf8'),
                 color.get('fill', 'rgba(56,189,248,0.08)'),
             )
-            st.plotly_chart(fig_spark, use_container_width=True, config={'displayModeBar': False})
+            st.plotly_chart(fig_spark, width="stretch", config={'displayModeBar': False})
 
             # Mini stats row
             st.markdown(
-                f"""
+                clean_html(f"""
                 <div style="
                     display: flex;
                     justify-content: space-between;
@@ -206,7 +212,7 @@ def render(data_dict: dict):
                     <span>30D LOW <span style="color:{color.get('line','#38bdf8')};">${df['Close'].tail(30).min():.2f}</span></span>
                     <span>VOL σ <span style="color:{color.get('line','#38bdf8')};">{vol:.3f}</span></span>
                 </div>
-                """,
+                """),
                 unsafe_allow_html=True,
             )
 
@@ -216,13 +222,13 @@ def render(data_dict: dict):
     st.subheader("Comparative Performance")
     st.caption("All tickers normalized to 100 at Jan 1, 2021 — see relative growth.")
     fig_multi = build_multi_close_chart(data_dict)
-    st.plotly_chart(fig_multi, use_container_width=True)
+    st.plotly_chart(fig_multi, width="stretch")
 
     # ── Section 3 : Volume Chart ──────────────────────────────
     st.subheader("Trading Activity")
     st.caption("Average quarterly trading volume per ticker — larger bars = more market activity.")
     fig_vol = build_volume_chart(data_dict)
-    st.plotly_chart(fig_vol, use_container_width=True)
+    st.plotly_chart(fig_vol, width="stretch")
 
     st.markdown("---")
 
@@ -237,7 +243,7 @@ def render(data_dict: dict):
             avg_ret = df['Daily Return (%)'].mean()
             avg_vol = df['Volatility (Rolling Std)'].mean()
             st.markdown(
-                f"""
+                clean_html(f"""
                 <div style="
                     background: linear-gradient(135deg, #111820, #0d1520);
                     border: 1px solid {c.get('border', '#1e2d3d')};
@@ -286,7 +292,7 @@ def render(data_dict: dict):
                         </div>
                     </div>
                 </div>
-                """,
+                """),
                 unsafe_allow_html=True,
             )
 
@@ -301,13 +307,13 @@ def render(data_dict: dict):
     for col in numeric_cols:
         if col in display_df.columns:
             display_df[col] = display_df[col].round(4)
-    st.dataframe(display_df, use_container_width=True, hide_index=True)
+    st.dataframe(display_df, width="stretch", hide_index=True)
 
     st.markdown("---")
 
     # ── Section 6 : About Box ──────────────────────────────────
     st.markdown(
-        """
+        clean_html("""
         <div style="
             background: linear-gradient(135deg, #0d1520, #0a1018);
             border: 1px solid #1e2d3d;
@@ -330,7 +336,7 @@ def render(data_dict: dict):
             over the period 2021–2024 using advanced statistical and probability methods.
             Built with Python, Streamlit, Plotly, Scipy, and Scikit-Learn.
         </div>
-        """,
+        """),
         unsafe_allow_html=True,
     )
 
@@ -341,7 +347,7 @@ def render(data_dict: dict):
     for col, (name, roll, role, icon, color) in zip(team_cols, TEAM_MEMBERS):
         with col:
             st.markdown(
-                f"""
+                clean_html(f"""
                 <div style="
                     background: linear-gradient(135deg, #111820, #0d1520);
                     border: 1px solid #1e2d3d;
@@ -385,13 +391,13 @@ def render(data_dict: dict):
                         text-transform: uppercase;
                     ">{role}</div>
                 </div>
-                """,
+                """),
                 unsafe_allow_html=True,
             )
 
     # ── Footer ────────────────────────────────────────────────
     st.markdown(
-        """
+        clean_html("""
         <div style="
             text-align: center;
             margin-top: 40px;
@@ -404,7 +410,7 @@ def render(data_dict: dict):
         ">
             PULSAR · BCS-4F + BSE-4 · DATA SOURCE: YAHOO FINANCE · 2021–2024
         </div>
-        """,
+        """),
         unsafe_allow_html=True,
     )
 

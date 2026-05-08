@@ -65,7 +65,7 @@ def render(data_dict: dict):
         ))
     
     fig_close.update_layout(template='plotly_dark', xaxis_title="Date", yaxis_title="Price")
-    st.plotly_chart(fig_close, use_container_width=True)
+    st.plotly_chart(fig_close, width="stretch")
     
     # 3. Candlestick chart with range slider
     st.subheader("Candlestick Chart")
@@ -84,7 +84,7 @@ def render(data_dict: dict):
         yaxis_title="Price",
         xaxis_rangeslider_visible=True
     )
-    st.plotly_chart(fig_candle, use_container_width=True)
+    st.plotly_chart(fig_candle, width="stretch")
     
     # 4. Volume bar chart
     st.subheader("Trading Volume")
@@ -96,7 +96,7 @@ def render(data_dict: dict):
         marker_color='#238636'
     ))
     fig_vol.update_layout(template='plotly_dark', xaxis_title="Date", yaxis_title="Volume")
-    st.plotly_chart(fig_vol, use_container_width=True)
+    st.plotly_chart(fig_vol, width="stretch")
     
     # 5. Daily Return (%) bar chart
     st.subheader("Daily Return (%)")
@@ -109,7 +109,7 @@ def render(data_dict: dict):
         marker_color=colors
     ))
     fig_ret.update_layout(template='plotly_dark', xaxis_title="Date", yaxis_title="Return (%)")
-    st.plotly_chart(fig_ret, use_container_width=True)
+    st.plotly_chart(fig_ret, width="stretch")
     
     # 6. A download button for filtered CSV
     csv_data = filtered_df.to_csv(index=False).encode('utf-8')

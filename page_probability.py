@@ -93,7 +93,7 @@ def render(data_dict: dict):
         yaxis_title="Density",
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # ──────────────────────────────────────────────
     # Section 3 — Probability Table
@@ -148,7 +148,7 @@ def render(data_dict: dict):
     styled = prob_df.style.map(color_prob, subset=["Probability"]).format(
         {"Probability": "{:.4f}"}
     )
-    st.dataframe(styled, use_container_width=True, hide_index=True)
+    st.dataframe(styled, width="stretch", hide_index=True)
 
     # ──────────────────────────────────────────────
     # Section 4 — CDF Plot
@@ -185,7 +185,7 @@ def render(data_dict: dict):
         xaxis_title="Daily Return (%)",
         yaxis_title="Cumulative Probability",
     )
-    st.plotly_chart(fig_cdf, use_container_width=True)
+    st.plotly_chart(fig_cdf, width="stretch")
 
     # ──────────────────────────────────────────────
     # Section 5 — Q-Q Plot
@@ -224,7 +224,7 @@ def render(data_dict: dict):
         xaxis_title="Theoretical Quantiles",
         yaxis_title="Sample Quantiles",
     )
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
     # Interpretation text under Q-Q
     dev = np.max(np.abs(np.array(sample_q) - ref_line))

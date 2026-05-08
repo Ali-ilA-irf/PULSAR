@@ -63,7 +63,7 @@ def render(data_dict: dict):
     }
 
     stats_df = pd.DataFrame(stats_data)
-    st.dataframe(stats_df, use_container_width=True, hide_index=True)
+    st.dataframe(stats_df, width="stretch", hide_index=True)
 
     # ──────────────────────────────────────────────
     # Section 2 — Histogram with Normal PDF Overlay
@@ -101,7 +101,7 @@ def render(data_dict: dict):
         yaxis_title="Density",
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # ──────────────────────────────────────────────
     # Section 3 — Skewness Interpretation

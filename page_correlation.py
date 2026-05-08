@@ -45,7 +45,7 @@ def render(data_dict: dict):
     )
 
     fig.update_xaxes(side='bottom')
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # ── Key Correlations (auto-text) ───────────────────────────────────────
     st.subheader("Key Correlations")
@@ -90,7 +90,7 @@ def render(data_dict: dict):
 
     st.dataframe(
         pairs_df.style.map(color_corr, subset=["Correlation (r)"]),
-        use_container_width=True,
+        width="stretch",
         hide_index=True
     )
 
@@ -125,7 +125,7 @@ def render(data_dict: dict):
             plot_bgcolor='rgba(13,17,23,0.6)'
         )
 
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width="stretch")
 
         # Interpretation
         for i in range(len(tickers_available)):
